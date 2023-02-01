@@ -6,28 +6,6 @@
 </div>
 {{ rooms?.availableRooms ?? "No rooms"}}
 <div *ngIf="rooms?.availableRooms">
-    Rooms List:
-
-    <table border="1">
-        <tr>
-            <th>Index</th>
-            <th>Even/Odd</th>
-            <th>Room Number</th>
-            <th>Room Type</th>
-            <th>Room Price</th>
-            <th>Room Amenities</th>
-            <th>Checkin Time</th>
-
-        </tr>
-        <tr [ngClass]="e? 'even' : 'odd' " *ngFor="let room of roomList; let e = even; let o = odd; let i = index">
-            <td>{{i+1}}</td>
-            <td>{{e? "Even" : "Odd"}}</td>
-            <td>{{room.roomNumber}}</td>
-            <td>{{room.roomType}}</td>
-            <td>{{room.price | currency: 'INR'}}</td>
-            <td>{{room.amenities}}</td>
-            <td>{{room.checkinTime | date}}</td>
-        </tr>
-    </table>
+    <app-room-list [rooms]="roomList"></app-room-list>
 </div>
 <button (click)="toggle()">Toggle</button>

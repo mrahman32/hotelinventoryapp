@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Room, RoomList } from './rooms';
 
 @Component({
@@ -6,7 +6,10 @@ import { Room, RoomList } from './rooms';
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss']
 })
-export class RoomsComponent {
+export class RoomsComponent implements OnInit {
+
+  
+
   hotelName = "Hilton Hotel";
   numberOfRooms = 10;
   hideRooms = false;
@@ -15,48 +18,55 @@ export class RoomsComponent {
     totalRooms: 20,
     availableRooms: 15,
     bookedRooms: 5
-  } 
+  };
 
 
-  roomList:RoomList[] = [
-    {
-      roomNumber:1,
-      roomType: 'Delux Room',
-      amenities: 'Air Conditioner, Free Wi-Fi, Tv, Bathroom, Kitchen',
-      price : 500,
-      photos:'',
-      checkinTime: new Date('11-Nov-2021'),
-      checkoutTime: new Date('12-Nov-2021')
-    },
-    {
-      roomNumber:2,
-      roomType: 'Delux Room',
-      amenities: 'Air Conditioner, Free Wi-Fi, Tv, Bathroom, Kitchen',
-      price : 500,
-      photos:'',
-      checkinTime: new Date('11-Nov-2021'),
-      checkoutTime: new Date('12-Nov-2021')
-    },
-    {
-      roomNumber:3,
-      roomType: 'Delux Room',
-      amenities: 'Air Conditioner, Free Wi-Fi, Tv, Bathroom, Kitchen',
-      price : 1200,
-      photos:'',
-      checkinTime: new Date('11-Nov-2021'),
-      checkoutTime: new Date('12-Nov-2021')
-    },
-    {
-      roomNumber:4,
-      roomType: 'Prive Suite',
-      amenities: 'Air Conditioner, Free Wi-Fi, Tv, Bathroom, Kitchen',
-      price : 1500,
-      photos:'',
-      checkinTime: new Date('11-Nov-2021'),
-      checkoutTime: new Date('12-Nov-2021')
-    },
-  ];
+  roomList:RoomList[] = [];
 
+  constructor(){}
+
+
+  ngOnInit(): void {
+    this.roomList = [
+      {
+        roomNumber:1,
+        roomType: 'Delux Room',
+        amenities: 'Air Conditioner, Free Wi-Fi, Tv, Bathroom, Kitchen',
+        price : 500,
+        photos:'',
+        checkinTime: new Date('11-Nov-2021'),
+        checkoutTime: new Date('12-Nov-2021')
+      },
+      {
+        roomNumber:2,
+        roomType: 'Delux Room',
+        amenities: 'Air Conditioner, Free Wi-Fi, Tv, Bathroom, Kitchen',
+        price : 500,
+        photos:'',
+        checkinTime: new Date('11-Nov-2021'),
+        checkoutTime: new Date('12-Nov-2021')
+      },
+      {
+        roomNumber:3,
+        roomType: 'Delux Room',
+        amenities: 'Air Conditioner, Free Wi-Fi, Tv, Bathroom, Kitchen',
+        price : 1200,
+        photos:'',
+        checkinTime: new Date('11-Nov-2021'),
+        checkoutTime: new Date('12-Nov-2021')
+      },
+      {
+        roomNumber:4,
+        roomType: 'Prive Suite',
+        amenities: 'Air Conditioner, Free Wi-Fi, Tv, Bathroom, Kitchen',
+        price : 1500,
+        photos:'',
+        checkinTime: new Date('11-Nov-2021'),
+        checkoutTime: new Date('12-Nov-2021')
+      },
+    ];
+  }
+  
   toggle() {
     this.hideRooms = !this.hideRooms; //toggle the value of  hideRooms variable
   }
