@@ -5,7 +5,15 @@
     [innerText]="numberOfRooms"></div>
 </div>
 {{ rooms?.availableRooms ?? "No rooms"}}
+
+
+<div *ngIf="selectedRoom">
+    {{selectedRoom | json}}
+</div>
+
+
+
 <div *ngIf="rooms?.availableRooms">
-    <app-room-list [rooms]="roomList"></app-room-list>
+    <app-room-list [rooms]="roomList" (selectedRoom)="selectRoom($event)"></app-room-list>
 </div>
 <button (click)="toggle()">Toggle</button>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { RoomList } from '../rooms';
 
 @Component({
@@ -9,10 +9,15 @@ import { RoomList } from '../rooms';
 export class RoomListComponent implements OnInit {
 
   @Input() rooms:RoomList[]=[];
+  @Output() selectedRoom = new EventEmitter<RoomList>();
   constructor(){}
 
   ngOnInit(): void {
     throw new Error('Method not implemented.');
+  }
+
+  selectRoom(room:RoomList){
+    this.selectedRoom.emit(room);
   }
 
 }
