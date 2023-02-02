@@ -26,7 +26,7 @@ export class RoomsComponent implements OnInit {
   roomList: RoomList[] = [];
 
   constructor() { }
-
+  
 
   ngOnInit(): void {
     this.roomList = [
