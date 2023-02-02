@@ -11,7 +11,9 @@
     {{selectedRoom | json}}
 </div>
 
-
+<div>
+    <button (click)="addRoom()">Add Room</button>
+</div>
 
 <div *ngIf="rooms?.availableRooms">
     <app-room-list [rooms]="roomList" (selectedRoom)="selectRoom($event)"></app-room-list>
