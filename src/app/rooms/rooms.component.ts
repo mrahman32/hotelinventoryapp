@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomList } from './rooms';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss']
 })
-export class RoomsComponent implements OnInit {
+export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
 
 
@@ -25,8 +26,21 @@ export class RoomsComponent implements OnInit {
 
   roomList: RoomList[] = [];
 
+  @ViewChild(HeaderComponent, { static: true }) headerComponent!: HeaderComponent;
+
+  @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
+
   constructor() { }
-  
+  ngAfterViewChecked(): void {
+    
+  }
+  ngAfterViewInit(): void {
+
+    this.headerComponent.title = "Angular Learnings-Room Component";
+
+    console.log(this.headerChildrenComponent);
+  }
+
 
   ngOnInit(): void {
     this.roomList = [
