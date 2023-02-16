@@ -1,11 +1,13 @@
 import { AfterViewChecked, AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
+import { RoomsService } from './services/rooms.service';
 
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
-  styleUrls: ['./rooms.component.scss']
+  styleUrls: ['./rooms.component.scss'],
+  // providers:[RoomsService]
 })
 export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
@@ -30,7 +32,7 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
-  constructor() { }
+  constructor(private roomsService:RoomsService) { }
   ngAfterViewChecked(): void {
     
   }
@@ -43,44 +45,8 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
 
   ngOnInit(): void {
-    this.roomList = [
-      {
-        roomNumber: 1,
-        roomType: 'Delux Room',
-        amenities: 'Air Conditioner, Free Wi-Fi, Tv, Bathroom, Kitchen',
-        price: 500,
-        photos: '',
-        checkinTime: new Date('11-Nov-2021'),
-        checkoutTime: new Date('12-Nov-2021')
-      },
-      {
-        roomNumber: 2,
-        roomType: 'Delux Room',
-        amenities: 'Air Conditioner, Free Wi-Fi, Tv, Bathroom, Kitchen',
-        price: 500,
-        photos: '',
-        checkinTime: new Date('11-Nov-2021'),
-        checkoutTime: new Date('12-Nov-2021')
-      },
-      {
-        roomNumber: 3,
-        roomType: 'Delux Room',
-        amenities: 'Air Conditioner, Free Wi-Fi, Tv, Bathroom, Kitchen',
-        price: 1200,
-        photos: '',
-        checkinTime: new Date('11-Nov-2021'),
-        checkoutTime: new Date('12-Nov-2021')
-      },
-      {
-        roomNumber: 4,
-        roomType: 'Prive Suite',
-        amenities: 'Air Conditioner, Free Wi-Fi, Tv, Bathroom, Kitchen',
-        price: 1500,
-        photos: '',
-        checkinTime: new Date('11-Nov-2021'),
-        checkoutTime: new Date('12-Nov-2021')
-      },
-    ];
+    this.roomList = this.roomsService.getRooms();
+
   }
 
   toggle() {
